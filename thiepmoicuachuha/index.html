@@ -355,11 +355,35 @@
       cursor: pointer;
       transition: transform 0.2s;
     }
+
+    .gallery-anim {
+      opacity: 0;
+      transform: translateX(-80vw) scale(0.8) rotate(-10deg);
+      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gallery-anim.left-in {
+      opacity: 0;
+      transform: translateX(-80vw) scale(0.8) rotate(-10deg);
+      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gallery-anim.right-in {
+      opacity: 0;
+      transform: translateX(80vw) scale(0.8) rotate(10deg);
+      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gallery-anim.visible {
+      opacity: 1;
+      transform: translateX(0) scale(1) rotate(0);
+    }
   </style>
 </head>
 
 <body>
   <audio id="backgroundMusic1" src="music1.mp3"></audio>
+  <canvas id="heart-canvas"></canvas>
   <canvas id="confetti-canvas"></canvas>
   <canvas id="firework-canvas"></canvas>
   <canvas id="emoji-canvas"></canvas>
@@ -422,13 +446,48 @@
 
   <section id="gallery" class="section">
     <div class="content-box">
-      <h2>Ngọc Hà with you</h2>
+      <h2>Hành trình 4 năm đại học của Ngọc Hà tại UEB</h2>
       <div class="gallery-grid">
-        <img src="ha.jpg" onclick="openLightbox(this.src)">
-        <img src="ha1.jpg" onclick="openLightbox(this.src)">
-        <img src="ha2.jpg" onclick="openLightbox(this.src)">
-        <!-- <img src="https://picsum.photos/200/200?random=4" onclick="openLightbox(this.src)"> -->
+        <img src="ha.jpg" class="gallery-anim left-in" onclick="openLightbox(this.src)">
+        <img src="ha1.jpg" class="gallery-anim right-in" onclick="openLightbox(this.src)">
+        <img src="ha2.jpg" class="gallery-anim left-in" onclick="openLightbox(this.src)">
+        <img src="ha3.jpg" class="gallery-anim right-in" onclick="openLightbox(this.src)">
+        <img src="ha4.jpg" class="gallery-anim left-in" onclick="openLightbox(this.src)">
+        <img src="ha5.jpg" class="gallery-anim right-in" onclick="openLightbox(this.src)">
       </div>
+      <style>
+        .gallery-anim.left-in {
+          opacity: 0;
+          transform: translateX(-80vw) scale(0.8) rotate(-10deg);
+          transition: all 1s cubic-bezier(0.4,0,0.2,1);
+        }
+        .gallery-anim.right-in {
+          opacity: 0;
+          transform: translateX(80vw) scale(0.8) rotate(10deg);
+          transition: all 1s cubic-bezier(0.4,0,0.2,1);
+        }
+        .gallery-anim.visible {
+          opacity: 1;
+          transform: translateX(0) scale(1) rotate(0);
+        }
+      </style>
+      <script>
+      // Hiệu ứng gallery khi cuộn xuống mới chạy, bay trái/phải xen kẽ
+      document.addEventListener('DOMContentLoaded', function() {
+        const imgs = document.querySelectorAll('.gallery-anim');
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach((entry, idx) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add('visible');
+              }, idx * 250);
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        imgs.forEach(img => observer.observe(img));
+      });
+      </script>
     </div>
   </section>
 
@@ -475,13 +534,13 @@
   <script>
     // Hiệu ứng ảnh gallery khi mở thiệp
     function animateGalleryImages() {
-      const imgs = document.querySelectorAll('.gallery-grid img');
+      const imgs = document.querySelectorAll('.gallery-anim');
       let delay = 0;
       imgs.forEach(img => {
         setTimeout(() => {
           img.classList.add('visible');
         }, delay);
-        delay += 200;
+        delay += 250;
       });
     }
     // Gọi hiệu ứng khi mở thiệp
@@ -489,7 +548,7 @@
       const origOpenInvitation = window.openInvitation;
       window.openInvitation = function() {
         if (origOpenInvitation) origOpenInvitation();
-        setTimeout(animateGalleryImages, 1200); // delay cho đồng bộ với hiệu ứng section
+        setTimeout(animateGalleryImages, 1200);
       };
       // Nếu đã mở thiệp thì show luôn
       if (document.getElementById('envelope-container').classList.contains('hidden')) {
