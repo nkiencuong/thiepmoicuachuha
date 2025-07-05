@@ -474,6 +474,26 @@ function animateSections() {
   createFireworks();
 }
 
+// Hiển thị icon trái tim và dòng chữ chạy nếu là mobile
+function showMobileMusicNotice() {
+  if (window.innerWidth > 768) return;
+  var notice = document.getElementById('mobile-music-notice');
+  var heart = document.getElementById('heart-music-btn');
+  if (notice) notice.style.display = 'block';
+  if (heart) {
+    heart.style.display = 'flex';
+    heart.onclick = function(e) {
+      e.stopPropagation();
+      var audio1 = document.getElementById('backgroundMusic1');
+      if (audio1) {
+        audio1.play().catch(err => console.error('Play music on heart click failed:', err));
+      }
+      heart.style.transform = 'scale(1.2)';
+      setTimeout(() => heart.style.transform = '', 200);
+    };
+  }
+}
+
 // Initialize
 window.onload = function() {
   try {
@@ -488,6 +508,8 @@ window.onload = function() {
 
     // Initialize ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
+    // Thêm dòng chữ chạy và icon trái tim cho mobile
+    showMobileMusicNotice();
   } catch (error) {
     console.error('Error in window.onload:', error);
   }
