@@ -494,6 +494,74 @@ function showMobileMusicNotice() {
   }
 }
 
+// Hiệu ứng trái tim mờ mờ bay quanh màn hình
+(function initializeHearts() {
+  const canvas = document.getElementById('heart-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  }
+  window.addEventListener('resize', resize);
+
+  // Tạo trái tim bằng path
+  function drawHeart(x, y, size, alpha, rotate = 0) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.translate(x, y);
+    ctx.rotate(rotate);
+    ctx.beginPath();
+    ctx.moveTo(0, -size/2);
+    ctx.bezierCurveTo(size/2, -size, size, 0, 0, size);
+    ctx.bezierCurveTo(-size, 0, -size/2, -size, 0, -size/2);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(255, 100, 150, 0.3)';
+    ctx.shadowColor = 'rgba(255, 100, 150, 0.2)';
+    ctx.shadowBlur = 8;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Tạo mảng trái tim
+  const heartCount = Math.max(18, Math.floor(width / 60));
+  const hearts = Array.from({length: heartCount}, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    size: 18 + Math.random() * 22,
+    alpha: 0.15 + Math.random() * 0.25,
+    speed: 0.3 + Math.random() * 0.5,
+    drift: (Math.random() - 0.5) * 0.3,
+    rotate: Math.random() * Math.PI * 2,
+    rotateSpeed: (Math.random() - 0.5) * 0.003
+  }));
+
+  function animateHearts() {
+    ctx.clearRect(0, 0, width, height);
+    for (const h of hearts) {
+      h.y -= h.speed;
+      h.x += h.drift;
+      h.rotate += h.rotateSpeed;
+      if (h.y < -h.size) {
+        h.y = height + h.size;
+        h.x = Math.random() * width;
+      }
+      if (h.x < -h.size) h.x = width + h.size;
+      if (h.x > width + h.size) h.x = -h.size;
+      drawHeart(h.x, h.y, h.size, h.alpha, h.rotate);
+    }
+    requestAnimationFrame(animateHearts);
+  }
+  animateHearts();
+})();
+
 // Initialize
 window.onload = function() {
   try {
