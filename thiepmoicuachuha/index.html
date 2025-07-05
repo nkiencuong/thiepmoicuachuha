@@ -389,6 +389,77 @@
       opacity: 1;
       transform: translateY(0) scale(1);
     }
+
+    /* Calendar styles */
+    .calendar-container {
+      margin: 36px auto 0 auto;
+      max-width: 370px;
+      background: transparent;
+      padding: 0;
+      text-align: center;
+    }
+
+    .calendar-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #bfa58a;
+      margin-bottom: 10px;
+      margin-top: 0;
+      letter-spacing: 2px;
+    }
+
+    .calendar-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Roboto', sans-serif;
+      color: #bfa58a;
+      font-size: 1.1rem;
+      background: transparent;
+    }
+
+    .calendar-table th {
+      font-weight: 400;
+      color: #bfa58a;
+      padding: 6px 0;
+      letter-spacing: 1px;
+    }
+
+    .calendar-table td {
+      padding: 7px 0;
+      width: 38px;
+      height: 38px;
+      text-align: center;
+      position: relative;
+      font-size: 1.1rem;
+      color: #bfa58a;
+    }
+
+    .calendar-heart {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+      pointer-events: none;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.7;
+    }
+
+    .calendar-table td.heart-day {
+      color: #222;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .calendar-heart svg {
+      width: 32px;
+      height: 32px;
+      display: block;
+    }
   </style>
 </head>
 
@@ -451,6 +522,86 @@
           </div>
           <p>Seconds</p>
         </div>
+      </div>
+      <!-- Calendar for August 2025 -->
+      <div class="calendar-container">
+        <div class="calendar-title">Tháng 8</div>
+        <table class="calendar-table">
+          <thead>
+            <tr>
+              <th>MON</th>
+              <th>TUE</th>
+              <th>WED</th>
+              <th>THUR</th>
+              <th>FRI</th>
+              <th>SAT</th>
+              <th>SUN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>1</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td class="heart-day">3
+                <div class="calendar-heart">
+                  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 28s-9.5-7.5-9.5-13.5A6.5 6.5 0 0 1 16 8a6.5 6.5 0 0 1 9.5 6.5C25.5 20.5 16 28 16 28z"
+                      stroke="#bfa58a" stroke-width="2.2" fill="none" />
+                  </svg>
+                </div>
+              </td>
+              <td>4</td>
+              <td>5</td>
+              <td>6</td>
+              <td>7</td>
+              <td>8</td>
+              <td>9</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>11</td>
+              <td>12</td>
+              <td>13</td>
+              <td>14</td>
+              <td>15</td>
+              <td>16</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>18</td>
+              <td>19</td>
+              <td>20</td>
+              <td>21</td>
+              <td>22</td>
+              <td>23</td>
+            </tr>
+            <tr>
+              <td>24</td>
+              <td>25</td>
+              <td>26</td>
+              <td>27</td>
+              <td>28</td>
+              <td>29</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td>31</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
