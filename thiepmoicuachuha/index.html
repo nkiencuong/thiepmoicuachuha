@@ -121,6 +121,15 @@
       position: relative;
       background-size: cover;
       background-position: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .section.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     #intro {
@@ -140,7 +149,7 @@
     }
 
     #thank-you {
-       background: linear-gradient(135deg, #f2f1f1, #ffffff);
+      background: linear-gradient(135deg, #f2f1f1, #ffffff);
     }
 
     .content-box {
@@ -298,24 +307,30 @@
       h1 {
         font-size: 2.5rem;
       }
+
       h2 {
         font-size: 2rem;
       }
+
       p {
         font-size: 1.1rem;
       }
+
       .envelope {
         width: 200px;
         height: 150px;
       }
+
       .flip-card {
         width: 50px;
         height: 70px;
       }
+
       .flip-card-front,
       .flip-card-back {
         font-size: 1.2rem;
       }
+
       .content-box {
         max-width: 98vw;
         width: 98vw;
@@ -464,7 +479,8 @@
       <div style="margin: 24px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
         <iframe
           src="https://www.google.com/maps?q=Trung+T%C3%A2m+H%E1%BB%99i+Ngh%E1%BB%8B+Qu%E1%BB%91c+Gia,+S%E1%BB%91+1+%C4%90%E1%BA%A1i+l%E1%BB%99+Th%C4%83ng+Long,+M%E1%BB%85+Tr%C3%AC,+Nam+T%E1%BB%AB+Li%C3%AAm,+H%C3%A0+N%E1%BB%99i&output=embed"
-          width="100%" height="320" style="border:0; min-width:250px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          width="100%" height="320" style="border:0; min-width:250px;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
@@ -476,18 +492,21 @@
       <p>Hẹn gặp bạn tại buổi lễ!</p>
     </div>
   </section>
-  
+
   <div id="lightbox" onclick="closeLightbox()">
     <img id="lightbox-img" src="">
   </div>
 
   <!-- Heart Icon and Marquee for Mobile Music Notice -->
-  <div id="mobile-music-notice" style="display:block; position:fixed; left:0; top:0; width:100vw; z-index:9999; pointer-events:none;">
-    <marquee behavior="scroll" direction="left" style="background:rgba(255,255,255,0.95); color:#e53935; font-size:1.1rem; font-weight:bold; padding:6px 0; pointer-events:auto;">
+  <div id="mobile-music-notice"
+    style="display:block; position:fixed; left:0; top:0; width:100vw; z-index:9999; pointer-events:none;">
+    <marquee behavior="scroll" direction="left"
+      style="background:rgba(255,255,255,0.95); color:#e53935; font-size:1.1rem; font-weight:bold; padding:6px 0; pointer-events:auto;">
       Nếu bạn dùng điện thoại hãy click vào trái tim này sẽ có nhạc
     </marquee>
   </div>
-  <div id="heart-music-btn" style="display:flex; position:fixed; bottom:24px; right:24px; z-index:10000; font-size:2.8rem; color:#e53935; background:rgba(255,255,255,0.85); border-radius:50%; box-shadow:0 2px 8px rgba(0,0,0,0.15); width:60px; height:60px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform 0.2s;">
+  <div id="heart-music-btn"
+    style="display:flex; position:fixed; bottom:24px; right:24px; z-index:10000; font-size:2.8rem; color:#e53935; background:rgba(255,255,255,0.85); border-radius:50%; box-shadow:0 2px 8px rgba(0,0,0,0.15); width:60px; height:60px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform 0.2s;">
     ❤️
   </div>
 
@@ -507,9 +526,9 @@
       });
     }
     // Gọi hiệu ứng khi mở thiệp
-    (function() {
+    (function () {
       const origOpenInvitation = window.openInvitation;
-      window.openInvitation = function() {
+      window.openInvitation = function () {
         if (origOpenInvitation) origOpenInvitation();
         setTimeout(animateGalleryImages, 1200);
       };
@@ -520,7 +539,7 @@
     })();
 
     // Hiệu ứng gallery: hiện từ dưới lên khi cuộn tới
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const imgs = document.querySelectorAll('.gallery-anim');
       const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
@@ -531,6 +550,20 @@
         });
       }, { threshold: 0.2 });
       imgs.forEach(img => observer.observe(img));
+    });
+
+    // Hiệu ứng xuất hiện section khi cuộn tới
+    document.addEventListener('DOMContentLoaded', function () {
+      const sections = document.querySelectorAll('.section');
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      sections.forEach(section => observer.observe(section));
     });
   </script>
 </body>
