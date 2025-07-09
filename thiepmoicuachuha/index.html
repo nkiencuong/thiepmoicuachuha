@@ -81,7 +81,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Dancing Script', cursive;
+      font-family: 'Time New Roman', cursive;
       font-size: 2rem;
       color: #333;
     }
@@ -299,7 +299,7 @@
 
     .neon-3d {
       text-shadow: none;
-      font-family: 'Great Vibes', sans-serif;
+      font-family: 'Time New Roman', cursive;
       color: #000000;
     }
 
@@ -460,6 +460,110 @@
       height: 32px;
       display: block;
     }
+
+    .invitation-flex {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 0;
+      flex-wrap: nowrap;
+      margin-bottom: 32px;
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .invitation-col {
+      flex: 1 1 0;
+      min-width: 0;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      padding: 18px 20px 12px 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .invitation-col:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .invitation-col:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .invitation-divider {
+      width: 2px;
+      background: linear-gradient(to bottom, #bfa58a 0%, #fff 100%);
+      margin: 0 0px;
+      height: auto;
+      min-height: 120px;
+      align-self: stretch;
+      border-radius: 2px;
+      box-shadow: 0 0 4px #bfa58a33;
+    }
+
+    .invitation-col h2 {
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.35rem;
+      color: #bfa58a;
+      margin-bottom: 10px;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: none;
+    }
+
+    .invitation-col p {
+      color: #222;
+      font-size: 1.1rem;
+      margin: 6px 0;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .invitation-flex {
+        flex-direction: row;
+        gap: 0;
+      }
+
+      .invitation-col {
+        min-width: 0;
+        width: 50%;
+        padding: 12px 4vw 10px 4vw;
+      }
+
+      .invitation-divider {
+        min-height: 80px;
+      }
+    }
+
+    .invitation-header {
+      margin-bottom: 18px;
+    }
+
+    .invitation-header h2 {
+      font-family: 'TIme', cursive;
+      font-size: 2.6rem;
+      color: #000;
+      font-weight: bold;
+      margin-bottom: 0;
+      text-align: center;
+    }
+
+    .invitation-header div {
+      font-family: 'Roboto', serif;
+      color: #222;
+      font-size: 1.18rem;
+      text-align: center;
+      margin-top: 2px;
+    }
   </style>
 </head>
 
@@ -488,11 +592,29 @@
 
   <section id="invitation" class="section">
     <div class="content-box">
-      <h2>Thân Mời</h2>
-      <p>Gia đình, Bạn bè và những người thân yêu<br>Đến tham dự lễ tốt nghiệp của <strong>Ngọc Hà
-          cutephomaique</strong></p>
-      <p><strong>Thời gian:</strong> 8:00 PM, Ngày 03/08/2025</p>
-      <p><strong>Địa điểm:</strong> Trung Tâm Hội Nghị Quốc Gia</p>
+      <div class="invitation-header" style="margin-bottom: 18px;">
+        <h2
+          style="font-family: 'Great Vibes', cursive; font-size:2.6rem; color:#000; font-weight:bold; margin-bottom: 0; text-align:center;">
+          Thân Mời</h2>
+        <div style="font-family: 'Roboto', serif; color:#222; font-size:1.18rem; text-align:center; margin-top: 2px;">
+          Gia đình, Bạn bè và những người thân yêu<br>
+          Đến tham dự lễ tốt nghiệp của <b style="font-weight:700; color:#222;">Ngọc Hà cutephomaïque</b>
+        </div>
+      </div>
+      <div class="invitation-flex">
+        <div class="invitation-col">
+          <h2>Buổi sáng</h2>
+          <p><strong>Thời gian:</strong> 8:00 AM, Ngày 03/08/2025</p>
+          <p><strong>Địa điểm:</strong> Tòa E4, 144 Đ. Xuân Thủy, Dịch Vọng Hậu, Cầu Giấy, Hà Nội, Việt Nam</p>
+        </div>
+        <div class="invitation-divider"></div>
+        <div class="invitation-col">
+          <h2>Buổi chiều</h2>
+          <p><strong>Thời gian:</strong> 14:00 PM, Ngày 03/08/2025</p>
+          <p><strong>Địa điểm:</strong> Hội trường MMH, Trung Tâm Hội Nghị Quốc Gia, 57 Đường Phạm Hùng, Quận Nam Từ
+            Liêm, Thành phố Hà Nội</p>
+        </div>
+      </div>
       <div class="countdown-box" id="countdown">
         <div class="flip-card" id="flip-days">
           <div class="flip-card-inner">
@@ -614,13 +736,23 @@
   <section id="parking" class="section">
     <div class="content-box">
       <h2>Hướng Dẫn Gửi Xe</h2>
-      <p>Gửi xe tại Trung Tâm Hội Nghị Quốc Gia (Số 1 Đại lộ Thăng Long, Mễ Trì, Nam Từ Liêm, Hà Nội).<br>
-        Đi vào cổng chính, gửi xe tại khu vực nhà xe bên phải sảnh chính.<br>
-        Phí gửi xe: 3 cành.<br>
-        Lưu ý: Đến sớm 15-20 phút để hoàn tất gửi xe và vào hội trường.</p>
+      <div class="invitation-flex" style="margin-bottom: 32px;">
+        <div class="invitation-col">
+          <h2>Buổi sáng</h2>
+          <p><strong>Gửi xe tại:</strong> Nhà xe gần tòa E4, 144 Đ. Xuân Thủy, Dịch Vọng Hậu, Cầu Giấy, Hà Nội</p>
+          <p><strong>Lưu ý:</strong> Đến sớm 15-20 phút để gửi xe và vào hội trường.</p>
+        </div>
+        <div class="invitation-divider"></div>
+        <div class="invitation-col">
+          <h2>Buổi chiều</h2>
+          <p><strong>Gửi xe tại:</strong> Trung Tâm Hội Nghị Quốc Gia, 57 Đường Phạm Hùng, Quận Nam Từ Liêm, Hà Nội</p>
+          <p><strong>Lưu ý:</strong> Đến sớm 15-20 phút để gửi xe và vào hội trường.</p>
+        </div>
+      </div>
+      
       <div style="margin: 24px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
         <iframe
-          src="https://www.google.com/maps?q=Trung+T%C3%A2m+H%E1%BB%99i+Ngh%E1%BB%8B+Qu%E1%BB%91c+Gia,+S%E1%BB%91+1+%C4%90%E1%BA%A1i+l%E1%BB%99+Th%C4%83ng+Long,+M%E1%BB%85+Tr%C3%AC,+Nam+T%E1%BB%AB+Li%C3%AAm,+H%C3%A0+N%E1%BB%99i&output=embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.427013712332!2d105.7806643154027!3d21.01338539359116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab3e7e2e7e2b%3A0x2e7e2e7e2e7e2e7e!2zVHJ1bmcgVMOibSBI4buZaSBOZ2jhu4cgUXXhu5FjIEdpYSAtIDU3IMSQLiBQaOG6oW0gSMawbmc!5e0!3m2!1svi!2s!4v1720512000000!5m2!1svi!2s"
           width="100%" height="320" style="border:0; min-width:250px;" allowfullscreen="" loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
