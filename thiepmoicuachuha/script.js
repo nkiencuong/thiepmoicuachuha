@@ -365,7 +365,7 @@ const createEmojis = initializeEmojiEffect();
 // Countdown Timer with Flip Effect
 function startCountdown() {
   try {
-    const eventDate = new Date('2025-08-03T08:00:00').getTime();
+    const eventDate = new Date('2025-08-03T09:00:00').getTime();
     let prevValues = { days: null, hours: null, minutes: null, seconds: null };
 
     const x = setInterval(function() {
